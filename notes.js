@@ -1,33 +1,22 @@
-var amy = {loc:1};
-amy. loc++
-
-var ben = {loc:9};
-ben.loc++;
-
-/*You should ask yourself what parts of this 
-code is repeated?
-
-created a seperate js file
-libary.js   and created this function */
-var move = function(car){
-	car.loc++;
-};
-//No the orginal code and be rewritten as 
-var amy = {loc:1};
-move(amy);
-
-var ben = {loc:9};
-move(ben);
-
-// now here is a function the creates an location object
-
-var carlike = function(obj, loc){
-	obj.loc = loc;
-	return obj;
+// Refactor the carlike function in a way
+// that allows you to use the method calling 
+// syntax with "dot access" as we do below.
+var carlike = function(obj, loc) {
+  obj.loc = loc;
+   //added a move object
+  obj.move = move;
+  return obj;
 };
 
-var amy = carlike({},1);
-move(amy);
+var move = function() {
+	//this will be bound to whatever is left 
+	//the "dot" when move is called.
+  this.loc++;
+};
 
-var ben = carlike({},9);
-move(ben);
+/////
+// Here we want to call move with "dot access"
+var amy = carlike({}, 1);
+amy.move();
+var ben = carlike({}, 9);
+ben.move();
