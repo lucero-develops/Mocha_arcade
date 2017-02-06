@@ -1,22 +1,30 @@
-// Refactor the carlike function in a way
-// that allows you to use the method calling 
-// syntax with "dot access" as we do below.
+// Refactor the carlike function so
+// that the move function is no longer
+// defined as a global variable but is
+// contained within the constructor function.
+
 var carlike = function(obj, loc) {
-  obj.loc = loc;
-   //added a move object
-  obj.move = move;
-  return obj;
+    obj.loc = loc;
+    obj.move = move;
+    return obj;
 };
 
 var move = function() {
-	//this will be bound to whatever is left 
-	//the "dot" when move is called.
-  this.loc++;
+    this.loc++;
 };
 
-/////
-// Here we want to call move with "dot access"
 var amy = carlike({}, 1);
 amy.move();
 var ben = carlike({}, 9);
 ben.move();
+
+
+//answer
+var carlike = function(obj, loc) {
+    obj.loc = loc;
+    //changed
+    obj.move = function(){
+    	this.loc++;
+    };
+    return obj;
+};
