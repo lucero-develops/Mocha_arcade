@@ -19,5 +19,15 @@ move(amy);
 var ben = {loc:9};
 move(ben);
 
+// now here is a function the creates an location object
 
+var carlike = function(obj, loc){
+	obj.loc = loc;
+	return obj;
+};
 
+var amy = carlike({},1);
+move(amy);
+
+var ben = carlike({},9);
+move(ben);
