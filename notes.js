@@ -1,7 +1,7 @@
 var carlike = function(obj, loc) {
     obj.loc = loc;
     obj.move = function() {
-        this.loc++;
+        obj.loc++;
     };
     return obj;
 };
@@ -12,19 +12,21 @@ var ben = carlike({}, 9);
 ben.move();
 
 /*
-now that the move function is being created everytime 
-each one has unique access to a closure scoop that is created
-when we invoke the car like function , thus we dont need to rely on 
-the key word this anymore .
+Decorator code vs Classes
 
-How would you rewrite the move function ?
+Class builds the object that its going to augment
+
+Class is a construct that is capaable of building 
+a fleet of simluar objects that all
+conform to roughly the same interface
 */
 
-var carlike = function(obj, loc) {
-    obj.loc = loc;
-    obj.move = function() {
-        obj.loc++;
-    };
-    return obj;
-};
+//names Classes nouns, also make the first letter capital
 
+var Car = function(loc){
+	var obj = {loc:loc};
+	obj.move = function(){
+		obj.loc++;
+	};
+	return obj;
+};
