@@ -9,17 +9,6 @@ ben.move();
 
 */
 
-var Car = function(loc){
-	var obj = {loc:loc};
-	obj.move = function(){
-		obj.loc++;
-	};
-	return obj;
-};
-
-//to reduce duplicity  of 
-//so many versions of the move method 
-//you can move the method out of this class
 
 var Car = function(loc){
 	var obj = {loc:loc};
@@ -32,8 +21,51 @@ var move = function(){
 };
 
 /*
-the parameter of  THIS (this.example)
-is going to treat the object left of the dot 
-at call time as a function input and their 
-for will provide use a name that we can use to refer 
-to that object 
+We now arrived at a functional CLASS pattern with 
+shared methods or simply the FUNCTIONAL SHARED PATTERN, 
+still needs some clean up though.
+
+Maybe you can store all your methods you plan on
+adding to Cars in an object in the first place , that way 
+its easy to irreate over over the object programmatically
+*/
+
+var Car = function(loc){
+	var obj = {loc:loc};
+	//
+	extend(obj,methods);
+	return obj;
+};
+
+// currently methods is a global variable which we shouldn't do 
+var methods = {
+	move: function(){
+		this.loc++;
+	},
+
+on  : function(){/*...*/},
+off : function(){/*...*/}
+};
+
+/*
+Lets use the objects features of the Car function 
+to make room for the object that stores these methods
+
+instead of using a global variable named methods ,
+we will instead put a property on the Car function 
+named Car.methods
+*/
+
+var Car = function(loc?){
+	var obj = {loc: loc};
+	extend(obj, Car.methods);
+	return obj;
+};
+Car.methods = {
+	move : function(){
+		this.loc++;
+	}
+};
+
+
+
