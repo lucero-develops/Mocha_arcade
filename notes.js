@@ -1,27 +1,13 @@
-var carlike = function(obj, loc) {
-    obj.loc = loc;
-    obj.move = function() {
-        obj.loc++;
-    };
-    return obj;
-};
+/*
+run. js 
 
-var amy = carlike({}, 1);
+var amy = Car(1);
 amy.move();
-var ben = carlike({}, 9);
+var ben = Car(9);
 ben.move();
 
-/*
-Decorator code vs Classes
 
-Class builds the object that its going to augment
-
-Class is a construct that is capaable of building 
-a fleet of simluar objects that all
-conform to roughly the same interface
 */
-
-//names Classes nouns, also make the first letter capital
 
 var Car = function(loc){
 	var obj = {loc:loc};
@@ -30,3 +16,24 @@ var Car = function(loc){
 	};
 	return obj;
 };
+
+//to reduce duplicity  of 
+//so many versions of the move method 
+//you can move the method out of this class
+
+var Car = function(loc){
+	var obj = {loc:loc};
+	obj.move = move;
+	return obj;
+};
+
+var move = function(){
+	this.loc++;
+};
+
+/*
+the parameter of  THIS (this.example)
+is going to treat the object left of the dot 
+at call time as a function input and their 
+for will provide use a name that we can use to refer 
+to that object 
