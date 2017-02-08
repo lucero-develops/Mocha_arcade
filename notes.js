@@ -1,10 +1,9 @@
-/*
-Learn to use the .prototype key to simplify thinking
-about objects and improve your applications' performance
-*/
+//Pseudoclassical Patterns
+
 
 
 Var Car = function(loc){
+	//creation and return of obj is repetitive
 	var obj = Object.create(Car.prototype);
 	obj.loc = loc;
 	return obj ;
@@ -13,18 +12,19 @@ Car.prototype.move = function(){
 		this.loc++
 };
 
+//  JS provides the keyword 'new'
 
-console.log(Car.prototype.constructor);
-//the constructor is the function its tied to 
+var ben = new Car(9);
+Var Car = function(loc){
+	this.loc = loc;
+};
+Car.prototype.move= function(){
+	this.loc++;
+};
 
-console.log(amy.constructor);
-//This would return the value of Car
+//EXAMPLE OF A PSUEDOCLASSICAL CLASS
 
-log(amy instanceof Car);
-/* this operator works by checkign to see
-if the right operands .prototype object 
-can be fround any where in the
-left opperands prototype chain
-
-Here Car.prototype can bee found somewhere in
-Amy's prototype chain .
+/*new provides us with the equivalent of 
+	lines 3 and 5 in our function, so we don't
+	 need them any more ... provided that we consistently
+	  use new!
