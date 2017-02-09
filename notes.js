@@ -1,30 +1,25 @@
-//Pseudoclassical Patterns
-
-
-
-Var Car = function(loc){
-	//creation and return of obj is repetitive
-	var obj = Object.create(Car.prototype);
-	obj.loc = loc;
-	return obj ;
+var Car = function(loc){
+    this.loc = loc;
 };
 Car.prototype.move = function(){
-		this.loc++
+    this.loc++;
 };
 
-//  JS provides the keyword 'new'
-
-var ben = new Car(9);
-Var Car = function(loc){
-	this.loc = loc;
+/*
+the .call method of any function
+allows us to run that function in 
+exactly the context we want it to
+*/
+var Van = function(loc){
+    Car.call(this, loc);
 };
-Car.prototype.move= function(){
-	this.loc++;
-};
 
-//EXAMPLE OF A PSUEDOCLASSICAL CLASS
+Van.prototype = Object.create(Car.prototype);
 
-/*new provides us with the equivalent of 
-	lines 3 and 5 in our function, so we don't
-	 need them any more ... provided that we consistently
-	  use new!
+
+
+var zed = new Car(3);
+zed.move();
+
+var amy = new Van(9);
+amy.move();
