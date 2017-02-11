@@ -17,13 +17,23 @@
 		*/
 			var canvas = document.querySelector("canvas");
 			var ctx = canvas.getContext("2d");
-			//Get Image Data Object
+			// Image Data Object is one list without are seperation between pixels
+
 			var data = ctx.getImageData(0,0,400, 400);
 
 			function paintGreen(imageData){
+				//if we know how many components are in each pixel we 
+				//can use that data to figure out how many pixels are stored in 
+				//the array
 				var numPixels = ImageData.data.length /4;
 				for (var i = 0; i < numPixels; i++) {
 					if (i%10 ===0) {
+						//once have the number of pixels we can use that number to 
+						//change the appropriate pixel component 
+						// the TRICKY PART	is that you just can't set the 
+						//green element  you also have to the ALPHA channel to 
+						//a non zero number as well.
+
 						imageData.data[i* 4 + 1] = 255;
 						imageData.data[i* 4 + 3] = 255;						
 					}
